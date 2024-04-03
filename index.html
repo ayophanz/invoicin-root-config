@@ -57,13 +57,15 @@
   </script>
 
   <!-- Add your organization's prod import map URL to this script's src  -->
-  <script type="systemjs-importmap" src="/importmap.json"></script>
+  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
   {{#if isLocal}}
   <script type="systemjs-importmap">
     {
       "imports": {
-        "root-config": "./src/main.ts"
+        "root-config": "./src/main.ts",
+        "@invoicin/nav-ui": "//localhost:9001/src/main.js",
+        "@invoicin/organization-ui": "//localhost:9002/src/main.js"
       }
     }
   </script>
@@ -95,7 +97,7 @@
     You need to enable JavaScript to run this app.
   </noscript>
   {{#unless isLocal}}
-    <!-- 加载 Vue3 -->
+    <!-- Vue3 -->
 		<script>
 			System.set(System.resolve('vue'), window.Vue);
 			System.set(System.resolve('vue-router'), window.VueRouter);
@@ -105,6 +107,13 @@
     System.import('root-config');
   </script>
 
+  <div id="container" class="flex">
+    <div id="nav-container"></div>
+    <main>
+      <div id="organization-container"></div>
+    </main>
+  </div>
+  
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
 </html>
