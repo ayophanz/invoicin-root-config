@@ -1,7 +1,7 @@
 {
   "imports": {
     "root-config": "./root-config.js",
-    "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
-    "@invoicin/nav-ui": "//localhost:9001/src/main.js"
+    "@invoicin/nav-ui": "//localhost:9001/src/main.js",
+    "@invoicin/organization-ui": "//localhost:9002/src/main.js"
   }
 }
