@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
 			rollupOptions: {
 				input: {
 					index: './index.html',
-					'root-config': './src/main.ts'
+					'root-config': './src/main.js'
 				},
 				output: {
 					format: 'system',
