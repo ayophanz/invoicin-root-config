@@ -12,8 +12,6 @@
     "single-spa-layout": "^2.2.0"
   },
   "devDependencies": {
-    "@loongwoo/eslint-config-typescript-prettier": "^1.2.0",
-    "@loongwoo/tailwind": "^1.0.0",
     "@types/node": "^20.11.30",
     "@types/systemjs": "^6.13.5",
     "autoprefixer": "^10.4.19",

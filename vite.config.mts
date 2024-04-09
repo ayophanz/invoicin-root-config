@@ -3,6 +3,9 @@ import fs from 'fs';
 import type { PluginOption } from 'vite';
 import { defineConfig, loadEnv, UserConfigExport } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
+import dns from 'dns';
+
+dns.setDefaultResultOrder('verbatim');
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd());
