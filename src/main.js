@@ -17,7 +17,7 @@ const apps = [
 apps.forEach(item => {
   registerApplication(
     item.name,
-    () => loadApp(item.name),
+    () => loadApp(item),
     item.status,
     { domElement: document.getElementById(item.container) }
   );
@@ -26,24 +26,23 @@ apps.forEach(item => {
 /**
  * Load application
  */
-const loadApp = async (name) => {
+const loadApp = async (item) => {
   await Promise.resolve();
-  placeLoader();
-  const app = await System.import(name);
-  removeLoader();
+  // placeLoader(item.container);
+  const app = await System.import(item.name);
+  // removeLoader(item.container);
   return app;
 }
 
-const placeLoader = () => {
-  document.body.appendChild(
-    Object.assign(document.createElement('img'), {
-      id: 'single-spa-loader',
-      src: 'loading.gif',
-    }));
+const placeLoader = (container) => {
+  let newElement = document.createElement('div');
+  newElement.innerHTML += '<div class="loading-anim"><div class="ping"></div></div>';
+  newElement.className = 'loading-container';
+  document.getElementById(container).append(newElement);
 }
 
-const removeLoader = () => {
-  document.getElementById('single-spa-loader').remove()
+const removeLoader = (container) => {
+  document.getElementById(container).getElementsByClassName('loading-container')[0].remove();
 }
 
 start();
