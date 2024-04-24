@@ -5,7 +5,6 @@ export function prefix(location: { href: string | string[]; origin: any; }, ...p
 }
 
 export function nav() {
-    // The nav is always active
     return true;
 }
 
