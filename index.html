@@ -43,7 +43,7 @@
   <!-- <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js" as="script">
   <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa-layout@2.1.0/dist/system/single-spa-layout.min.js" as="script"> -->
   
-  <script type="systemjs-importmap">
+  <!-- <script type="systemjs-importmap">
     {
       "imports": {
         "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js",
@@ -55,7 +55,7 @@
         "axios": "https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"
       }
     }
-  </script>
+  </script> -->
 
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
@@ -64,7 +64,7 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "root-config": "./src/main.js",
+        "@root-config": "//localhost:9000/src/main.js",
         "@invoicin/nav-ui": "//localhost:9001/src/main.js",
         "@invoicin/organization-ui": "//localhost:9002/src/main.js"
       }
@@ -90,7 +90,7 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <script>
-    System.import('root-config');
+    System.import('@root-config');
   </script>
 
   <div id="main-container" class="main-container">

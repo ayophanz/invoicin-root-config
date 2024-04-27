@@ -78,7 +78,7 @@ body {
         height: 100%;
         position: absolute;
         width: 100%;
-        border: 1px solid rgb(229 231 235 / 1);
+        border: 1px solid rgb(55 65 81 / 1);
 }
 .cube div:nth-of-type(1) {
 -webkit-transform: translateZ(-20px) rotateY(180deg);
