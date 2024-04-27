@@ -11,6 +11,22 @@
     .single-spa-container {
       height: 100%;
     }
+    #container {
+      display: flex;
+    }
+    #container main {
+      width: 100%;
+      position: relative;
+    }
+    #nav-container {
+      height: 100%;
+      width: 90px;
+      position: relative;
+      border-right: 1px solid rgb(229 231 235 / 1);
+    }
+    #organization-container {
+      height:100%;
+    }
   </style>
 
   <!--
@@ -112,10 +128,10 @@
     System.import('root-config');
   </script>
 
-  <div id="container" class="flex">
-    <div id="nav-container" class="border-r border-gray-200" style="height:100%;width:90px;position:relative;"></div>
-    <main style="width:100%;position:relative;">
-      <div id="organization-container" style="height:100%;"></div>
+  <div id="container">
+    <div id="nav-container"></div>
+    <main>
+      <div id="organization-container"></div>
     </main>
   </div>
   

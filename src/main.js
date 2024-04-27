@@ -1,5 +1,6 @@
-import { registerApplication, start } from "single-spa";
-import * as isActive from "../src/activity-function";
+// import './style.css';
+import { registerApplication, start } from 'single-spa';
+import * as isActive from './activity-function';
 
 const apps = [
   {
@@ -28,15 +29,15 @@ apps.forEach(item => {
  */
 const loadApp = async (item) => {
   await Promise.resolve();
-  // placeLoader(item.container);
+  //placeLoader(item.container);
   const app = await System.import(item.name);
-  // removeLoader(item.container);
+  //removeLoader(item.container);
   return app;
 }
 
 const placeLoader = (container) => {
   let newElement = document.createElement('div');
-  newElement.innerHTML += '<div class="loading-anim"><div class="ping"></div></div>';
+  newElement.innerHTML = '<div class="cude"><div></div><div></div><div></div><div></div><div></div><div></div></div>';
   newElement.className = 'loading-container';
   document.getElementById(container).append(newElement);
 }
