@@ -1,4 +1,3 @@
-// import './style.css';
 import { registerApplication, start } from 'single-spa';
 import * as isActive from './activity-function';
 
@@ -29,21 +28,22 @@ apps.forEach(item => {
  */
 const loadApp = async (item) => {
   await Promise.resolve();
-  //placeLoader(item.container);
+  placeLoader(item.container);
   const app = await System.import(item.name);
-  //removeLoader(item.container);
+  removeLoader(item.container);
   return app;
 }
 
 const placeLoader = (container) => {
   let newElement = document.createElement('div');
-  newElement.innerHTML = '<div class="cude"><div></div><div></div><div></div><div></div><div></div><div></div></div>';
+  newElement.innerHTML = '<div class="cube"><div></div><div></div><div></div><div></div><div></div><div></div></div>';
   newElement.className = 'loading-container';
   document.getElementById(container).append(newElement);
 }
 
 const removeLoader = (container) => {
-  document.getElementById(container).getElementsByClassName('loading-container')[0].remove();
+  const containerId = document.getElementById(container);
+  const loadingContainer = containerId.getElementsByClassName('loading-container');
+  if (loadingContainer) loadingContainer[0].remove();
 }
-
 start();
