@@ -14,7 +14,7 @@ const apps = [
   },
 ];
 
-apps.forEach(item => {
+apps.forEach((item) => {
   registerApplication(
     item.name,
     () => loadApp(item),
@@ -46,4 +46,5 @@ const removeLoader = (container) => {
   const loadingContainer = containerId.getElementsByClassName('loading-container');
   if (loadingContainer) loadingContainer[0].remove();
 }
+
 start();

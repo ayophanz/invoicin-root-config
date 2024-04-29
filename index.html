@@ -40,36 +40,26 @@
 
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
-  <!-- <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js" as="script">
-  <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa-layout@2.1.0/dist/system/single-spa-layout.min.js" as="script"> -->
-  
-  <!-- <script type="systemjs-importmap">
-    {
-      "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js",
-        "single-spa-layout": "https://cdn.jsdelivr.net/npm/single-spa-layout@2.1.0/dist/system/single-spa-layout.min.js",
-        "vue": "https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js",
-        "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@4.1.6/dist/vue-router.global.prod.js",
-        "pinia": "https://cdn.jsdelivr.net/npm/pinia@2.0.13/dist/pinia.iife.prod.js",
-        "single-spa-vue": "https://cdn.jsdelivr.net/npm/single-spa-vue@2.5.1/dist/umd/single-spa-vue.min.js",
-        "axios": "https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"
-      }
-    }
-  </script> -->
 
-  <!-- Add your organization's prod import map URL to this script's src  -->
-  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
-
-  {{#if isLocal}}
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@root-config": "//localhost:9000/src/main.js",
-        "@invoicin/nav-ui": "//localhost:9001/src/main.js",
-        "@invoicin/organization-ui": "//localhost:9002/src/main.js"
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js",
+        "single-spa-layout": "https://unpkg.liangyihui.net/single-spa-layout@2.1.0/dist/system/single-spa-layout.min.js",
+        "vue": "https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js",
+        "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@4.1.6/dist/vue-router.global.prod.js",
+        "pinia": "https://cdn.jsdelivr.net/npm/pinia@2.0.13/dist/pinia.iife.prod.js",
+        "single-spa-vue": "https://cdn.jsdelivr.net/npm/single-spa-vue@2.5.1/dist/umd/single-spa-vue.min.js"
       }
     }
   </script>
+  <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js" as="script">
+  <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js" as="script">
+
+  {{#if isLocal}}
+  <script type="systemjs-importmap" src="./src/import-dev-apps.json"></script>
+  {{else}}
+  <script type="systemjs-importmap" src="./src/import-dev-apps.json"></script>
   {{/if}}
 
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
@@ -89,6 +79,12 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
+  <!-- {{#unless isLocal}} -->
+		<script>
+			System.set(System.resolve('vue'), window.Vue);
+			System.set(System.resolve('vue-router'), window.VueRouter);
+		</script>
+	<!-- {{/unless}} -->
   <script>
     System.import('@root-config');
   </script>
