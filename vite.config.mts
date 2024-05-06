@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
 			rollupOptions: {
 				input: {
 					index: './index.html',
-					'root-config': './src/main.ts'
+					'root-config': './src/main.js'
 				},
 				output: {
 					format: 'system',
@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
 					}
 				},
 				preserveEntrySignatures: 'strict',
-				external: ['single-spa', 'single-spa-layout']
+				external: ['vue', 'single-spa', 'single-spa-layout']
 			}
 		},
 		plugins: [
@@ -40,14 +40,14 @@ export default defineConfig(({ mode }) => {
 					isLocal: mode === 'development'
 				}
 			}) as unknown as PluginOption,
-			{
-				name: 'vite-plugin-build-rm-file',
-				apply: 'build',
-				enforce: 'post',
-				closeBundle() {
-					fs.unlinkSync(`${env.VITE_OUTDIR}/index.js`);
-				}
-			}
+			// {
+			// 	name: 'vite-plugin-build-rm-file',
+			// 	apply: 'build',
+			// 	enforce: 'post',
+			// 	closeBundle() {
+			// 		fs.unlinkSync(`${env.VITE_OUTDIR}/index.js`);
+			// 	}
+			// }
 		]
 	};
 
