@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 import type { PluginOption } from 'vite';
 import { defineConfig, loadEnv, UserConfigExport } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
@@ -39,7 +37,7 @@ export default defineConfig(({ mode }) => {
 				context: {
 					isLocal: mode === 'development'
 				}
-			}) as unknown as PluginOption,
+			}) as unknown as PluginOption
 			// {
 			// 	name: 'vite-plugin-build-rm-file',
 			// 	apply: 'build',
