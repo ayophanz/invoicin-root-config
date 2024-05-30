@@ -1,7 +1,6 @@
-import fs from 'fs';
-
 import type { PluginOption } from 'vite';
 import { defineConfig, loadEnv, UserConfigExport } from 'vite';
+import checker from 'vite-plugin-checker';
 import handlebars from 'vite-plugin-handlebars';
 import dns from 'dns';
 
@@ -19,7 +18,7 @@ export default defineConfig(({ mode }) => {
 			rollupOptions: {
 				input: {
 					index: './index.html',
-					'root-config': './src/main.ts'
+					'root-config': './src/main.js'
 				},
 				output: {
 					format: 'system',
@@ -31,29 +30,28 @@ export default defineConfig(({ mode }) => {
 					}
 				},
 				preserveEntrySignatures: 'strict',
-				external: ['single-spa', 'single-spa-layout']
+				external: ['vue', 'single-spa', 'single-spa-layout']
 			}
 		},
 		plugins: [
+			checker({
+				typescript: true
+			}),
 			handlebars({
 				context: {
 					isLocal: mode === 'development'
 				}
-			}) as unknown as PluginOption,
-			{
-				name: 'vite-plugin-build-rm-file',
-				apply: 'build',
-				enforce: 'post',
-				closeBundle() {
-					fs.unlinkSync(`${env.VITE_OUTDIR}/index.js`);
-				}
-			}
+			}) as unknown as PluginOption
+			// {
+			// 	name: 'vite-plugin-build-rm-file',
+			// 	apply: 'build',
+			// 	enforce: 'post',
+			// 	closeBundle() {
+			// 		fs.unlinkSync(`${env.VITE_OUTDIR}/index.js`);
+			// 	}
+			// }
 		]
 	};
-
-	if (mode === 'docs') {
-		config.build.outDir = env.VITE_OUTDIR;
-	}
 
 	return config;
 });

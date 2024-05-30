@@ -7,6 +7,7 @@
   <title>Root Config</title>
 
   <link rel="icon" href="/single-spa.svg">
+  <link rel="stylesheet" href="src/style.css">
 
   <!--
     Remove this if you only support browsers that support async/await.
@@ -25,7 +26,7 @@
     This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: http: data: blob: localhost:* *; font-src 'self' https: localhost:* data:; script-src 'unsafe-inline' 'unsafe-eval' http: https: blob: localhost:* invoicin-root-config:* invoicin-gateway-api.test:*; connect-src https: http: localhost:* ws://localhost:* wss://ws-eu.pusher.com; style-src 'unsafe-inline' https:; object-src 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: http: data: blob: localhost:* *; font-src 'self' https: localhost:* data:; script-src 'unsafe-inline' 'unsafe-eval' http: https: blob: localhost:* invoicin-root-config:* invoicin-organization-api.test:* invoicin-gateway-api.test:*; connect-src https: http: localhost:* ws://localhost:* wss://ws-ap1.pusher.com; style-src 'self' 'unsafe-inline' https:; object-src 'none';">
   <meta name="importmap-type" content="systemjs-importmap" />
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
@@ -39,50 +40,32 @@
 
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
-  <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js" as="script">
-  <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa-layout@2.1.0/dist/system/single-spa-layout.min.js" as="script">
-  
+
   <script type="systemjs-importmap">
     {
       "imports": {
         "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js",
-        "single-spa-layout": "https://cdn.jsdelivr.net/npm/single-spa-layout@2.1.0/dist/system/single-spa-layout.min.js",
+        "single-spa-layout": "https://unpkg.liangyihui.net/single-spa-layout@2.1.0/dist/system/single-spa-layout.min.js",
         "vue": "https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js",
         "vue-router": "https://cdn.jsdelivr.net/npm/vue-router@4.1.6/dist/vue-router.global.prod.js",
         "pinia": "https://cdn.jsdelivr.net/npm/pinia@2.0.13/dist/pinia.iife.prod.js",
-        "single-spa-vue": "https://cdn.jsdelivr.net/npm/single-spa-vue@2.5.1/dist/umd/single-spa-vue.min.js",
-        "axios": "https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"
+        "single-spa-vue": "https://cdn.jsdelivr.net/npm/single-spa-vue@2.5.1/dist/umd/single-spa-vue.min.js"
       }
     }
   </script>
-
-  <!-- Add your organization's prod import map URL to this script's src  -->
-  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
+  <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.4/lib/system/single-spa.min.js" as="script">
+  <link rel="preload" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js" as="script">
 
   {{#if isLocal}}
-  <script type="systemjs-importmap">
-    {
-      "imports": {
-        "root-config": "./src/main.ts",
-        "@invoicin/nav-ui": "//localhost:9001/src/main.js",
-        "@invoicin/organization-ui": "//localhost:9002/src/main.js"
-      }
-    }
-  </script>
+  <script type="systemjs-importmap" src="./src/import-dev-apps.json"></script>
+  {{else}}
+  <script type="systemjs-importmap" src="./src/import-dev-apps.json"></script>
   {{/if}}
-
-  <!--
-    If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
-    Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
-  -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script> -->
 
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
   {{#if isLocal}}
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/system.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/extras/amd.js"></script>
-  
-  <!-- 如果是 TypeScript，需要导入 systemjs-babel -->
   <script src="https://cdn.jsdelivr.net/npm/systemjs-babel@0.3.1/dist/systemjs-babel.js"></script>
   {{else}}
   <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.prod.js"></script>
@@ -96,21 +79,21 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  {{#unless isLocal}}
-    <!-- Vue3 -->
+  <!-- {{#unless isLocal}} -->
 		<script>
 			System.set(System.resolve('vue'), window.Vue);
 			System.set(System.resolve('vue-router'), window.VueRouter);
 		</script>
-	{{/unless}}
+	<!-- {{/unless}} -->
   <script>
-    System.import('root-config');
+    System.import('@root-config');
   </script>
 
-  <div id="container" class="flex">
-    <div id="nav-container"></div>
+  <div id="main-container" class="main-container">
+    <div id="nav-container" class="nav-container"></div>
     <main>
-      <div id="organization-container"></div>
+      <div id="organization-container" class="organization-container"></div>
+      <!-- Module pages -->
     </main>
   </div>
   
