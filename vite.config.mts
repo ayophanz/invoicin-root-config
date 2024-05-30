@@ -1,7 +1,6 @@
-import fs from 'fs';
-
 import type { PluginOption } from 'vite';
 import { defineConfig, loadEnv, UserConfigExport } from 'vite';
+import checker from 'vite-plugin-checker';
 import handlebars from 'vite-plugin-handlebars';
 import dns from 'dns';
 
@@ -35,11 +34,14 @@ export default defineConfig(({ mode }) => {
 			}
 		},
 		plugins: [
+			checker({
+				typescript: true
+			}),
 			handlebars({
 				context: {
 					isLocal: mode === 'development'
 				}
-			}) as unknown as PluginOption,
+			}) as unknown as PluginOption
 			// {
 			// 	name: 'vite-plugin-build-rm-file',
 			// 	apply: 'build',
@@ -50,10 +52,6 @@ export default defineConfig(({ mode }) => {
 			// }
 		]
 	};
-
-	if (mode === 'docs') {
-		config.build.outDir = env.VITE_OUTDIR;
-	}
 
 	return config;
 });
