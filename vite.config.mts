@@ -8,6 +8,11 @@ dns.setDefaultResultOrder('verbatim');
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd());
+	const handlebarsConfig = {
+		context: {
+			isLocal: mode === env.VITE_MODE
+		}
+	} as any;
 
 	const config: UserConfigExport = {
 		base: './',
@@ -37,11 +42,7 @@ export default defineConfig(({ mode }) => {
 			checker({
 				typescript: true
 			}),
-			handlebars({
-				context: {
-					isLocal: mode === 'development'
-				}
-			}) as unknown as PluginOption
+			handlebars(handlebarsConfig) as unknown as PluginOption
 			// {
 			// 	name: 'vite-plugin-build-rm-file',
 			// 	apply: 'build',
