@@ -4,6 +4,7 @@ import checker from 'vite-plugin-checker';
 import handlebars from 'vite-plugin-handlebars';
 import dns from 'dns';
 
+const hash = Math.floor(Math.random() * 90000) + 10000;
 dns.setDefaultResultOrder('verbatim');
 
 export default defineConfig(({ mode }) => {
@@ -27,8 +28,9 @@ export default defineConfig(({ mode }) => {
 				},
 				output: {
 					format: 'system',
-					entryFileNames: '[name].js',
-					assetFileNames: 'assets/[name][ext]',
+					entryFileNames: `[name]-${hash}.js`,
+					assetFileNames: `assets/[name]-${hash}[ext]`,
+					// assetFileNames: 'assets/[name][ext]',
 					globals: {
 						'single-spa': 'singleSpa',
 						'single-spa-layout': 'singleSpaLayout'
