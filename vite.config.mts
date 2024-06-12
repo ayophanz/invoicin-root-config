@@ -4,10 +4,16 @@ import checker from 'vite-plugin-checker';
 import handlebars from 'vite-plugin-handlebars';
 import dns from 'dns';
 
+const hash = Math.floor(Math.random() * 90000) + 10000;
 dns.setDefaultResultOrder('verbatim');
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd());
+	const handlebarsConfig = {
+		context: {
+			isLocal: mode === env.VITE_MODE
+		}
+	} as any;
 
 	const config: UserConfigExport = {
 		base: './',
@@ -22,8 +28,9 @@ export default defineConfig(({ mode }) => {
 				},
 				output: {
 					format: 'system',
-					entryFileNames: '[name].js',
-					assetFileNames: 'assets/[name][ext]',
+					entryFileNames: `[name]-${hash}.js`,
+					assetFileNames: `assets/[name]-${hash}[ext]`,
+					// assetFileNames: 'assets/[name][ext]',
 					globals: {
 						'single-spa': 'singleSpa',
 						'single-spa-layout': 'singleSpaLayout'
@@ -37,11 +44,7 @@ export default defineConfig(({ mode }) => {
 			checker({
 				typescript: true
 			}),
-			handlebars({
-				context: {
-					isLocal: mode === 'development'
-				}
-			}) as unknown as PluginOption
+			handlebars(handlebarsConfig) as unknown as PluginOption
 			// {
 			// 	name: 'vite-plugin-build-rm-file',
 			// 	apply: 'build',

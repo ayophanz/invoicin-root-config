@@ -91,11 +91,22 @@
 
   <div id="main-container" class="main-container">
     <div id="nav-container" class="nav-container"></div>
-    <main>
+    <main id="main-app-container">
       <div id="organization-container" class="organization-container"></div>
       <!-- Module pages -->
     </main>
   </div>
+
+  <script>
+    const lastPart = window.location.pathname.split("/")[1];
+    if (lastPart === 'organization') {
+      const mainAppContainerId = document.getElementById('main-app-container');
+      if (mainAppContainerId) mainAppContainerId.classList.add("active");
+
+      const navContainerId = document.getElementById('nav-container');
+      if (navContainerId) navContainerId.classList.add("app-loaded");
+    }
+  </script>
   
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
