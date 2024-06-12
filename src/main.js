@@ -40,7 +40,12 @@ const placeLoader = container => {
 };
 
 const removeLoader = container => {
+	const mainAppContainerId = document.getElementById('main-app-container');
+	mainAppContainerId.classList.add("active");
+
 	const containerId = document.getElementById(container);
+	if (container == 'nav-container') containerId.classList.add("app-loaded");
+
 	const loadingContainer =
 		containerId.getElementsByClassName('loading-container');
 	if (loadingContainer) loadingContainer[0].remove();
