@@ -1,7 +1,8 @@
 {
   "imports": {
     "@root-config": "//localhost:9000/src/main.js",
-    "@invoicin/nav-ui": "//localhost:9001/src/main.js",
-    "@invoicin/organization-ui": "//localhost:9002/src/main.js"
+    "@invoicin/nav-ui": "//localhost:9001/src/main.ts",
+    "@invoicin/organization-ui": "//localhost:9002/src/main.ts",
+    "@invoicin/customer-ui": "//localhost:9003/src/main.ts"
   }
 }

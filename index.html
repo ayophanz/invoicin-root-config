@@ -93,13 +93,14 @@
     <div id="nav-container" class="nav-container"></div>
     <main id="main-app-container">
       <div id="organization-container" class="organization-container"></div>
+      <div id="customer-container" class="customer-container"></div>
       <!-- Module pages -->
     </main>
   </div>
 
   <script>
     const lastPart = window.location.pathname.split("/")[1];
-    if (lastPart === 'organization') {
+    if (lastPart === 'organization' || lastPart === 'customer') {
       const mainAppContainerId = document.getElementById('main-app-container');
       if (mainAppContainerId) mainAppContainerId.classList.add("active");
 

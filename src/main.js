@@ -11,6 +11,11 @@ const apps = [
 		name: '@invoicin/organization-ui',
 		status: isActive.organization,
 		container: 'organization-container'
+	},
+	{
+		name: '@invoicin/customer-ui',
+		status: isActive.customer,
+		container: 'customer-container'
 	}
 ];
 

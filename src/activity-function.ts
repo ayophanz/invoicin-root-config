@@ -18,3 +18,11 @@ export function organization(location: {
 }) {
 	return prefix(location, 'organization');
 }
+
+export function customer(location: {
+	pathname: string;
+	href: string | string[];
+	origin: string;
+}) {
+	return prefix(location, 'customer');
+}
