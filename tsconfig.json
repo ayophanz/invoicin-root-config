@@ -8,6 +8,6 @@
     "moduleResolution": "Node",
     "emitDeclarationOnly": false
   },
-  "include": ["env.d.ts", "vite.config.* --noEmit", "src/**/*"],
+  "include": ["src/env.d.ts", "vite.config.* --noEmit", "src/**/*"],
   "exclude": ["src/**/*.test*"]
 }

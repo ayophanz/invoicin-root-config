@@ -49,10 +49,10 @@ const removeLoader = container => {
 	mainAppContainerId.classList.add("active");
 
 	const containerId = document.getElementById(container);
-	if (container == 'nav-container') containerId.classList.add("app-loaded");
+	if (container == 'nav-container') 
+		containerId.classList.add("app-loaded");
 
-	const loadingContainer =
-		containerId.getElementsByClassName('loading-container');
+	const loadingContainer = containerId.getElementsByClassName('loading-container');
 	if (loadingContainer) loadingContainer[0].remove();
 };
 

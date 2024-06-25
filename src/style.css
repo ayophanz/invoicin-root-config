@@ -15,14 +15,15 @@ body {
 	height: 100%;
 	position: relative;
 	border-right: 1px solid rgb(229 231 235 / 1);
-  flex-grow: 1;
+   flex-grow: 1;
 }
 #nav-container.app-loaded {
-  width: 90px;
-  flex-shrink: 1;
+   width: 90px;
+   flex-shrink: 1;
 }
-#organization-container {
-	height:100%;
+#organization-container,
+#customer-container {
+   height:100%;
 }
 #nav-container .loading-container {
 	position: relative;
@@ -30,14 +31,21 @@ body {
 	display: flex;
 	justify-content: center;
 	/* align-items: center; */
-        margin-top: 50px;
+   margin-top: 50px;
 }
-#organization-container .loading-container {
+#organization-container .loading-container,
+#customer-container .loading-container {
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	/* align-items: center; */
-        margin-top: 50px;
+   margin-top: 50px;
+}
+main#main-app-container > div {
+    display: none;
+}
+main#main-app-container div.active-module-container {
+    display: block;
 }
 
 /**

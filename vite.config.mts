@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
 		context: {
 			isLocal: mode === env.VITE_MODE
 		}
-	} as any;
+	};
 
 	const config: UserConfigExport = {
 		base: './',

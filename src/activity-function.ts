@@ -1,5 +1,5 @@
 export function prefix(
-	location: { pathname: string; href: string | string[]; origin: string },
+	location: { pathname: string; href: string; origin: string },
 	...prefixes: string[]
 ) {
 	return prefixes.some(
@@ -13,7 +13,7 @@ export function nav() {
 
 export function organization(location: {
 	pathname: string;
-	href: string | string[];
+	href: string;
 	origin: string;
 }) {
 	return prefix(location, 'organization');
@@ -21,7 +21,7 @@ export function organization(location: {
 
 export function customer(location: {
 	pathname: string;
-	href: string | string[];
+	href: string;
 	origin: string;
 }) {
 	return prefix(location, 'customer');
