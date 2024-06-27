@@ -42,10 +42,11 @@ body {
    margin-top: 50px;
 }
 main#main-app-container > div {
-    display: none;
+    height: auto;
 }
 main#main-app-container div.active-module-container {
     display: block;
+    height: 100%;
 }
 
 /**
